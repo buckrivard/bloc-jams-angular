@@ -21,10 +21,6 @@
         		currentBuzzObject.stop();
     		}
 
-    		if (currentSong) {
-        		currentSong.playing = null;  			
-    		}
- 
             if (song) {
 	    		currentBuzzObject = new buzz.sound(song.audioUrl, {
 	        		formats: ['mp3'],
@@ -41,15 +37,10 @@
 		 * @desc calls play buzz method to play music and sets state of currentSong.playing 
 		 * @param {boolean} state
 		 */
- 		var playSong = function(state) {
- 			if (state) {
+ 		var playSong = function() {
  				currentBuzzObject.play();
  				currentSong.playing = true;
- 			} else {
- 				currentBuzzObject.pause();
- 				currentSong.playing = false;
  			}
- 		}
 
  		/**
 		 * @function play 
@@ -57,13 +48,9 @@
 		 * @param {Object} song
 		 */
 		SongPlayer.play = function(song) {
-			if (!song) {
-				setSong(song);
-			} else if (currentSong !== song) {
-
+			} if (currentSong !== song) {
 				setSong(song);
 				playSong(true);
-
 			} else if (currentSong === song) {
 				if (currentBuzzObject.isPaused()) {
 					playSong(true);
@@ -76,7 +63,8 @@
 		 * @param {Object} song
 		 */
 		SongPlayer.pause = function(song) {
-			playSong(false);
+			currentBuzzObject.pause();
+     		song.playing = false;
 		}
 		return SongPlayer;
 	};
