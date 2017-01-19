@@ -48,7 +48,7 @@
 		 * @param {Object} song
 		 */
 		SongPlayer.play = function(song) {
-			} if (currentSong !== song) {
+			if (currentSong !== song) {
 				setSong(song);
 				playSong(true);
 			} else if (currentSong === song) {
