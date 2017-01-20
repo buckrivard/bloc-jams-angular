@@ -19,16 +19,13 @@
 		var setSong = function(song) {
     		if (currentBuzzObject) {
         		currentBuzzObject.stop();
+        		currentSong.playing = null;
     		}
 
-            if (song) {
-	    		currentBuzzObject = new buzz.sound(song.audioUrl, {
-	        		formats: ['mp3'],
-	        		preload: true
-	    		});            	
-            } else {
-            	currentBuzzObject = null;
-            }
+    		currentBuzzObject = new buzz.sound(song.audioUrl, {
+        		formats: ['mp3'],
+        		preload: true
+    		});            	
  
     		currentSong = song;
  		};
@@ -37,9 +34,9 @@
 		 * @desc calls play buzz method to play music and sets state of currentSong.playing 
 		 * @param {boolean} state
 		 */
- 		var playSong = function() {
+ 		var playSong = function(song) {
  				currentBuzzObject.play();
- 				currentSong.playing = true;
+ 				song.playing = true;
  			}
 
  		/**
@@ -50,10 +47,10 @@
 		SongPlayer.play = function(song) {
 			if (currentSong !== song) {
 				setSong(song);
-				playSong(true);
+				playSong(song);
 			} else if (currentSong === song) {
 				if (currentBuzzObject.isPaused()) {
-					playSong(true);
+					playSong(song);
 				}
 			} 
 		}
