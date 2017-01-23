@@ -100,5 +100,5 @@
 
 angular
 	.module('blocJams')
-	.factory('SongPlayer', SongPlayer);
+	.factory('SongPlayer', ['$rootScope', 'Fixtures' SongPlayer]);
 })();
