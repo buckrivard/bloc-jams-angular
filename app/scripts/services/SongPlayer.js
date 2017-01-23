@@ -1,5 +1,5 @@
 (function () {
-	function SongPlayer (Fixtures) {
+	function SongPlayer ($rootScope, Fixtures) {
 		var SongPlayer = {};
 		/**
 		* @desc retrieves album data from Fixtures
