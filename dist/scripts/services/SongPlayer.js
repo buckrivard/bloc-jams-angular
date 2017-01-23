@@ -47,9 +47,9 @@
  			//if (!song) {
  			//	throw "invalid song";
  			//} here to debug caller
- 			if (currentBuzzObject) {
+ 			//if (currentBuzzObject) {
 	 			currentBuzzObject.stop(); 				
- 			}
+ 			//}
 	 		song.playing = null;
  		}
 		
@@ -126,5 +126,5 @@
 
 angular
 	.module('blocJams')
-	.factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
+	.factory('SongPlayer', SongPlayer);
 })();
