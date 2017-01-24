@@ -26,7 +26,13 @@
         		formats: ['mp3'],
         		preload: true
     		});            	
- 
+ 			
+    		currentBuzzObject.bind('timeupdate', function() {
+    			$rootScope.$apply(function () {
+    				SongPlayer.currentTime = currentBuzzObject.getTime();
+    			});
+    		})
+
     		SongPlayer.currentSong = song;
  		};
  		/**
@@ -99,7 +105,7 @@
      		song.playing = false;
 		}
 		/**
-		* @function
+		* @function previous
 		* @desc sets song to previous song in album, or stops music if called on first song of album
 		*/
 		SongPlayer.previous = function() {
@@ -113,7 +119,10 @@
 				playSong(song);
 			}
 		};
-
+		/**
+		* @function next
+		* @desc plays the next song
+		*/
 		SongPlayer.next = function() {
 			var currentSongIndex = getSongIndex(SongPlayer.currentSong);
 			currentSongIndex++;
@@ -125,13 +134,16 @@
 				playSong(song);
 			}
 		}
-
+		/**
+		* @function setCurrentTime
+		* @desc sets the current time in the playing song
+		* @param {number} time
+		*/
 		SongPlayer.setCurrentTime = function(time) {
 			if (currentBuzzObject) {
 				currentBuzzObject.setTime(time);
 			}
 		};
-
 		return SongPlayer;
 	};
 
