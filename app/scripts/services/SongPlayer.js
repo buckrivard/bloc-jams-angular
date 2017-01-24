@@ -67,6 +67,11 @@
 		* @type {Object}
 		*/
 		SongPlayer.currentSong = null;
+		/**
+		 * @desc Current playback time (in seconds) of currently playing song
+		 * @type {Number}
+		 */
+		SongPlayer.currentTime = null;
  		/**
 		 * @function play 
 		 * @desc plays and sets specified song
@@ -120,6 +125,12 @@
 				playSong(song);
 			}
 		}
+
+		SongPlayer.setCurrentTime = function(time) {
+			if (currentBuzzObject) {
+				currentBuzzObject.setTime(time);
+			}
+		};
 
 		return SongPlayer;
 	};
