@@ -2,18 +2,18 @@
     function Fixtures() {
         var Fixtures = {};
 
-		var albumPicasso = {
-		    title: 'The Colors',
-		    artist: 'Pablo Picasso',
+		var sunlitYouth = {
+		    title: 'Sunlit Youth',
+		    artist: 'Local Natives',
 		    label: 'Cubism',
-		    year: '1881',
-		    albumArtUrl: '/assets/images/album_covers/01.png',
+		    year: '2016',
+		    albumArtUrl: '/assets/images/album_covers/22.png',
 		    songs: [
-		        { title: 'Blue', duration: 161.71, audioUrl: 'assets/music/blue' },
-		        { title: 'Green', duration: 103.96, audioUrl: 'assets/music/green' },
-		        { title: 'Red', duration: 268.45, audioUrl: 'assets/music/red' },
-		        { title: 'Pink', duration: 153.14, audioUrl: 'assets/music/pink' },
-		        { title: 'Magenta', duration: 374.22, audioUrl: 'assets/music/magenta' }
+		        { title: 'Villainy', duration: 223, audioUrl: 'assets/music/Villainy' },
+		        { title: 'Past Lives', duration: 223, audioUrl: 'assets/music/Past Lives' },
+		        { title: 'Dark Days', duration: 181, audioUrl: 'assets/music/Dark Days' },
+		        { title: 'Fountain of Youth', duration: 233, audioUrl: 'assets/music/Fountain of Youth' },
+		        { title: 'Masters', duration: 265, audioUrl: 'assets/music/Masters' }
 		    ]
 		 };
 
@@ -33,13 +33,13 @@
 		 };
 
 		 Fixtures.getAlbum = function() {
-		 	return albumPicasso;
+		 	return sunlitYouth;
 		 };
 
 		 Fixtures.getCollection = function (numberOfAlbums) {
 		 	var albums = [];
 		 	for (var i = 0; i < numberOfAlbums; i++) {
-            albums.push(albumPicasso);
+            albums.push(sunlitYouth);
         	}
         	return albums;
 		 }

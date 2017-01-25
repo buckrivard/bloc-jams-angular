@@ -29,7 +29,7 @@
  			
     		currentBuzzObject.bind('timeupdate', function() {
     			$rootScope.$apply(function () {
-    				SongPlayer.currentTime = currentBuzzObject.getTime();
+    				SongPlayer.currentTime = currentBuzzObject.getTime();    
     			});
     		})
 
@@ -67,7 +67,11 @@
  		var getSongIndex = function(song) {
  			return currentAlbum.songs.indexOf(song);
  		};
-
+ 		/**
+ 		* @desc volume level
+ 		* @type {number}
+ 		*/
+ 		SongPlayer.volume = 80;
 		/**
 		* @desc song currently selected
 		* @type {Object}
@@ -83,7 +87,9 @@
 		 * @desc plays and sets specified song
 		 * @param {Object} song
 		 */
+		
 		SongPlayer.play = function(song) {
+			console.log(song, SongPlayer.currentSong);
 			song = song || SongPlayer.currentSong;
 			if (SongPlayer.currentSong !== song) {
 				setSong(song);
@@ -100,6 +106,7 @@
 		 * @param {Object} song
 		 */
 		SongPlayer.pause = function(song) {
+			console.log(song, SongPlayer.currentSong);
 			song = song || SongPlayer.currentSong;
 			currentBuzzObject.pause();
      		song.playing = false;
@@ -109,6 +116,7 @@
 		* @desc sets song to previous song in album, or stops music if called on first song of album
 		*/
 		SongPlayer.previous = function() {
+			console.log(song, SongPlayer.currentSong);
 			var currentSongIndex = getSongIndex(SongPlayer.currentSong);
 			currentSongIndex--;
 			if (currentSongIndex < 0) {
@@ -124,6 +132,7 @@
 		* @desc plays the next song
 		*/
 		SongPlayer.next = function() {
+			console.log(song, SongPlayer.currentSong);
 			var currentSongIndex = getSongIndex(SongPlayer.currentSong);
 			currentSongIndex++;
 			if (currentSongIndex >= currentAlbum.songs.length) {
@@ -134,6 +143,16 @@
 				playSong(song);
 			}
 		}
+		/**
+		* @function SetVolume
+		* @desc changes the volume
+		* @param {Number} volume
+		*/
+		SongPlayer.setVolume = function(volume) {
+			if (currentBuzzObject) {
+				currentBuzzObject.setVolume(volume);
+			}
+		};
 		/**
 		* @function setCurrentTime
 		* @desc sets the current time in the playing song
