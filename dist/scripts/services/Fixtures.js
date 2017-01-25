@@ -5,7 +5,7 @@
 		var sunlitYouth = {
 		    title: 'Sunlit Youth',
 		    artist: 'Local Natives',
-		    label: 'Cubism',
+		    label: 'Loma Vista Recordings',
 		    year: '2016',
 		    albumArtUrl: '/assets/images/album_covers/22.png',
 		    songs: [
