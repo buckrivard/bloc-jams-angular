@@ -165,8 +165,16 @@
 			}
 		};
 		
-		SongPlayer.mute = function() {
+		SongPlayer.isMuted = false;
 
+		SongPlayer.mute = function(volume) {
+			SongPlayer.setVolume(volume)
+			SongPlayer.isMuted = true;
+		};
+
+		SongPlayer.unMute = function(volume) {
+			SongPlayer.setVolume(volume)
+			SongPlayer.isMuted = false;
 		}
 		return SongPlayer;
 	};
