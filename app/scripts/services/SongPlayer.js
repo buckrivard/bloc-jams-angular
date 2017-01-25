@@ -72,6 +72,8 @@
  		* @type {number}
  		*/
  		SongPlayer.volume = 80;
+
+ 		var oldVolume = null;
 		/**
 		* @desc song currently selected
 		* @type {Object}
@@ -87,7 +89,6 @@
 		 * @desc plays and sets specified song
 		 * @param {Object} song
 		 */
-		
 		SongPlayer.play = function(song) {
 			console.log(song, SongPlayer.currentSong);
 			song = song || SongPlayer.currentSong;
@@ -98,7 +99,7 @@
 				if (currentBuzzObject.isPaused()) {
 					playSong(song);
 				}
-			} 
+			}
 		}
 		/**
 		 * @function pause
@@ -163,6 +164,19 @@
 				currentBuzzObject.setTime(time);
 			}
 		};
+		
+		SongPlayer.mute = function() {	
+			if (SongPlayer.volume !== 0) {
+				oldVolume = SongPlayer.volume;
+			}
+			currentBuzzObject.toggleMute();
+			if (!currentBuzzObject.isMuted()) {
+				SongPlayer.volume = oldVolume;
+			} else {
+				SongPlayer.volume = 0;
+			}
+		};
+
 		return SongPlayer;
 	};
 
