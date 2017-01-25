@@ -165,18 +165,9 @@
 			}
 		};
 		
-		SongPlayer.mute = function() {	
-			if (SongPlayer.volume !== 0) {
-				oldVolume = SongPlayer.volume;
-			}
-			currentBuzzObject.toggleMute();
-			if (!currentBuzzObject.isMuted()) {
-				SongPlayer.volume = oldVolume;
-			} else {
-				SongPlayer.volume = 0;
-			}
-		};
+		SongPlayer.mute = function() {
 
+		}
 		return SongPlayer;
 	};
 
