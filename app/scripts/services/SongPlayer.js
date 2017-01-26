@@ -175,7 +175,8 @@
 		SongPlayer.unMute = function(volume) {
 			SongPlayer.setVolume(volume)
 			SongPlayer.isMuted = false;
-		}
+		};
+
 		return SongPlayer;
 	};
 
