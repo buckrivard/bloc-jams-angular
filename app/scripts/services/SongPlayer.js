@@ -197,6 +197,19 @@
 			SongPlayer.isMuted = false;
 		};
 
+		SongPlayer.rowClicked = false;
+
+		SongPlayer.playSongFromRow = function(song) {
+			console.log('clicked');
+			if (!rowClicked) {
+				SongPlayer.play(song);
+				SongPlayer.rowClicked = true;
+			} else {
+				SongPlayer.pause(song);
+				SongPlayer.rowClicked = false;
+			}
+		};
+
 		return SongPlayer;
 	};
 
