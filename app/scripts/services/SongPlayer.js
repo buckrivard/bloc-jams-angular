@@ -171,9 +171,12 @@
 		*/
 
 		SongPlayer.mute = function() {
-			console.log("clicked to mute");
 			if (!currentBuzzObject) {
-				isMuted = true;
+				SongPlayer.isMuted = true;
+				return;
+			}
+			if (SongPlayer.isMuted) {
+				currentBuzzObject.mute();
 				return;
 			}
 			currentBuzzObject.mute();
@@ -186,9 +189,8 @@
 		*/
 
 		SongPlayer.unMute = function() {
-			console.log("clicked to unmute");
 			if (!currentBuzzObject) {
-				isMuted = false;
+				SongPlayer.isMuted = false;
 				return;
 			}
 			currentBuzzObject.unmute();

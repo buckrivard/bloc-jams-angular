@@ -169,7 +169,7 @@
     
     .player-bar .main-controls,
     .player-bar .volume {
-        min-height: 3.5rem;
+        min-height: 2.5rem;
     }
     
     .player-bar .currently-playing {
