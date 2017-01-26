@@ -31,7 +31,10 @@
     				SongPlayer.currentTime = currentBuzzObject.getTime();    
     			});
     		});
-
+			if (SongPlayer.isMuted) {
+    			currentBuzzObject.mute();
+    		}
+    		currentBuzzObject.setVolume(SongPlayer.volume);
     		SongPlayer.currentSong = song;
  		};
  		/**
@@ -40,8 +43,11 @@
 		 * @param {object} song
 		 */
  		var playSong = function(song) {
-			currentBuzzObject.play();
+			var play = currentBuzzObject.play();
 			song.playing = true;
+			play.bind('ended', function() {
+				SongPlayer.next();
+			});
  		};
  		/**
 		* @function stopSong
@@ -86,11 +92,7 @@
 		 * @param {Object} song
 		 */
 		SongPlayer.play = function(song) {
-			if (!currentBuzzObject) {
-				setSong(currentAlbum.songs[0]);
-				playSong(currentAlbum.songs[0]);
-			}
-			song = song || SongPlayer.currentSong;
+			song = song || SongPlayer.currentSong || currentAlbum.songs[0];
 			if (SongPlayer.currentSong !== song) {
 				setSong(song);
 				playSong(song);
@@ -148,6 +150,7 @@
 		SongPlayer.setVolume = function(volume) {
 			if (currentBuzzObject) {
 				currentBuzzObject.setVolume(volume);
+				this.volume = volume;
 			}
 		};
 		/**
@@ -165,9 +168,8 @@
 		* @desc mutes song
 		* @param {number} volume
 		*/
-		SongPlayer.mute = function(volume) {
-			console.log('called on mute()', volume);
-			SongPlayer.setVolume(volume)
+		SongPlayer.mute = function() {
+			currentBuzzObject.mute();
 			SongPlayer.isMuted = true;
 		};
 		/**
@@ -175,9 +177,8 @@
 		* @desc unmutes song
 		* @param {number} volume
 		*/
-		SongPlayer.unMute = function(volume) {
-			console.log('called on unMute()', volume)
-			SongPlayer.setVolume(volume)
+		SongPlayer.unMute = function() {
+			currentBuzzObject.unmute();
 			SongPlayer.isMuted = false;
 		};
 
