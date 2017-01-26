@@ -21,7 +21,6 @@
         		currentBuzzObject.stop();
         		SongPlayer.currentSong.playing = null;
     		}
-
     		currentBuzzObject = new buzz.sound(song.audioUrl, {
         		formats: ['mp3'],
         		preload: true
@@ -31,7 +30,7 @@
     			$rootScope.$apply(function () {
     				SongPlayer.currentTime = currentBuzzObject.getTime();    
     			});
-    		})
+    		});
 
     		SongPlayer.currentSong = song;
  		};
@@ -43,22 +42,16 @@
  		var playSong = function(song) {
 			currentBuzzObject.play();
 			song.playing = true;
- 			};
+ 		};
  		/**
 		* @function stopSong
 		* @desc stops selected song
 		* @param {object} song
 		*/
  		var stopSong = function(song) {
- 			//if (!song) {
- 			//	throw "invalid song";
- 			//} here to debug caller
- 			//if (currentBuzzObject) {
-	 			currentBuzzObject.stop(); 				
- 			//}
+	 		currentBuzzObject.stop();
 	 		song.playing = null;
- 		}
-		
+ 		};
 		/**
 		* @function getSongIndex
 		* @desc gets index of currently playing song
@@ -67,13 +60,16 @@
  		var getSongIndex = function(song) {
  			return currentAlbum.songs.indexOf(song);
  		};
+ 		/** 
+ 		* @desc used to check if song is muted
+ 		* @type {Boolean}
+ 		*/
+ 		SongPlayer.isMuted = false;
  		/**
  		* @desc volume level
  		* @type {number}
  		*/
  		SongPlayer.volume = 80;
-
- 		var oldVolume = null;
 		/**
 		* @desc song currently selected
 		* @type {Object}
@@ -90,7 +86,10 @@
 		 * @param {Object} song
 		 */
 		SongPlayer.play = function(song) {
-			console.log(song, SongPlayer.currentSong);
+			if (!currentBuzzObject) {
+				setSong(currentAlbum.songs[0]);
+				playSong(currentAlbum.songs[0]);
+			}
 			song = song || SongPlayer.currentSong;
 			if (SongPlayer.currentSong !== song) {
 				setSong(song);
@@ -100,24 +99,22 @@
 					playSong(song);
 				}
 			}
-		}
+		};
 		/**
 		 * @function pause
 		 * @desc pauses a playing song
 		 * @param {Object} song
 		 */
 		SongPlayer.pause = function(song) {
-			console.log(song, SongPlayer.currentSong);
 			song = song || SongPlayer.currentSong;
 			currentBuzzObject.pause();
      		song.playing = false;
-		}
+		};
 		/**
 		* @function previous
 		* @desc sets song to previous song in album, or stops music if called on first song of album
 		*/
 		SongPlayer.previous = function() {
-			console.log(song, SongPlayer.currentSong);
 			var currentSongIndex = getSongIndex(SongPlayer.currentSong);
 			currentSongIndex--;
 			if (currentSongIndex < 0) {
@@ -133,7 +130,6 @@
 		* @desc plays the next song
 		*/
 		SongPlayer.next = function() {
-			console.log(song, SongPlayer.currentSong);
 			var currentSongIndex = getSongIndex(SongPlayer.currentSong);
 			currentSongIndex++;
 			if (currentSongIndex >= currentAlbum.songs.length) {
@@ -143,7 +139,7 @@
 				setSong(song);
 				playSong(song);
 			}
-		}
+		};
 		/**
 		* @function SetVolume
 		* @desc changes the volume
@@ -164,15 +160,23 @@
 				currentBuzzObject.setTime(time);
 			}
 		};
-		
-		SongPlayer.isMuted = false;
-
+		/**
+		* @function mute
+		* @desc mutes song
+		* @param {number} volume
+		*/
 		SongPlayer.mute = function(volume) {
+			console.log('called on mute()', volume);
 			SongPlayer.setVolume(volume)
 			SongPlayer.isMuted = true;
 		};
-
+		/**
+		* @function unmute
+		* @desc unmutes song
+		* @param {number} volume
+		*/
 		SongPlayer.unMute = function(volume) {
+			console.log('called on unMute()', volume)
 			SongPlayer.setVolume(volume)
 			SongPlayer.isMuted = false;
 		};
