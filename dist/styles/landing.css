@@ -9,6 +9,7 @@ body.landing {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    opacity: .97;
 }
 
 .hero-content .hero-title {
@@ -40,6 +41,7 @@ body.landing {
 
 .point .point-title {
     font-size: 1.25rem;
+    opacity: 1;
 }
 
 .ion-music-note, .ion-radio-waves, .ion-iphone {
