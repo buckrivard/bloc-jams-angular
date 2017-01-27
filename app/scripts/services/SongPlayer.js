@@ -187,7 +187,6 @@
 		* @desc unmutes song
 		* @param {number} volume
 		*/
-
 		SongPlayer.unMute = function() {
 			if (!currentBuzzObject) {
 				SongPlayer.isMuted = false;
@@ -197,16 +196,11 @@
 			SongPlayer.isMuted = false;
 		};
 
-		SongPlayer.rowClicked = false;
-
-		SongPlayer.playSongFromRow = function(song) {
-			console.log('clicked');
-			if (!rowClicked) {
+		SongPlayer.playPauseFromRow = function(song) {
+			if (!song.playing) {
 				SongPlayer.play(song);
-				SongPlayer.rowClicked = true;
 			} else {
 				SongPlayer.pause(song);
-				SongPlayer.rowClicked = false;
 			}
 		};
 
