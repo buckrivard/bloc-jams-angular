@@ -31,6 +31,8 @@ The default task runs a simple server on port 3000. To view it in a any browser,
 
 ![Alt Text](app/assets/images/BlocJamsAngular.jpg)
 
+![Alt Text](app/assets/images/scroll.gif)
+
 
 ## Grunt plugins
 
