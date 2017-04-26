@@ -6,7 +6,7 @@ An AngularJS-based Spotify clone
 ![Alt Text](app/assets/images/BlocJamsAngular.jpg)
 
 
-Visit [netlify](buckjams.netlify.com) on a computer or mobile device, or read below to run on your local server.
+Visit [netlify](https://buckjams.netlify.com/) on a computer or mobile device (make sure to OK scriptload on Chrome), or read below to run on your local server.
 
 ## Configuration
 
