@@ -2,6 +2,9 @@
 
 An AngularJS-based Spotify clone
 
+
+![Alt Text](app/assets/images/BlocJamsAngular.jpg)
+
 ## Configuration
 
 Start by cloning the repository:
@@ -25,11 +28,6 @@ $ grunt
 ```
 
 The default task runs a simple server on port 3000. To view it in a any browser, go to [http://localhost:3000](http://localhost:3000).
-
-
-### Assets/Images
-
-![Alt Text](app/assets/images/BlocJamsAngular.jpg)
 
 
 ## Grunt plugins
